@@ -1,0 +1,35 @@
+<.wrapper_small>
+  <h1 class="text-3xl font-bold"><%= @page_title %></h1>
+
+  <.form
+    :let={f}
+    for={@changeset}
+    action={Routes.user_reset_password_path(@conn, :update, @token)}
+    class="flex flex-col"
+  >
+    >
+    <%= if @changeset.action do %>
+      <.alert type="error" message="Oops, something went wrong! Please check the errors below." />
+    <% end %>
+
+    <div class="flex flex-col space-y-8">
+      <label>
+        <div class="mb-2">New password</div>
+        <%= password_input(f, :password, required: true, class: "Input") %>
+      </label>
+      <%= error_tag(f, :password) %>
+
+      <label>
+        <div class="mb-2">Confirm new password</div>
+        <%= password_input(f, :password_confirmation, required: true, class: "Input") %>
+      </label>
+      <%= error_tag(f, :password_confirmation) %>
+
+      <button class="Btn Btn--primary self-end">Reset password</button>
+    </div>
+  </.form>
+
+  <p class="text-center">
+    <.link href={Routes.user_session_path(@conn, :new)} class="text-red-500 underline">Log in</.link>
+  </p>
+</.wrapper_small>

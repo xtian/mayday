@@ -1,0 +1,18 @@
+<.wrapper_small>
+  <h1 class="text-3xl font-bold"><%= @page_title %></h1>
+
+  <.form :let={f} for={:user} action={Routes.user_reset_password_path(@conn, :create)} class="flex flex-col">
+    <div class="flex flex-col space-y-4">
+      <label>
+        <div class="mb-2">Email</div>
+        <%= email_input(f, :email, required: true, class: "Input") %>
+      </label>
+
+      <button class="Btn Btn--primary self-end">Send instructions to reset password</button>
+    </div>
+  </.form>
+
+  <p class="text-center">
+    <.link href={Routes.user_session_path(@conn, :new)} class="text-red-500 underline">Log in</.link>
+  </p>
+</.wrapper_small>

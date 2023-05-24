@@ -1,0 +1,11 @@
+<.wrapper_small>
+  <h1 class="text-3xl font-bold"><%= @page_title %></h1>
+
+  <.form :let={_f} for={:user} action={Routes.user_confirmation_path(@conn, :update, @token)} class="flex flex-col">
+    <button class="mx-auto rounded-lg bg-red-500 px-6 py-2 text-white">Confirm my account</button>
+  </.form>
+
+  <p class="text-center">
+    <.link href={Routes.user_session_path(@conn, :new)} class="text-red-500 underline">Log in</.link>
+  </p>
+</.wrapper_small>

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -o errexit -o verbose
+export INTEGRATION=true
+
+mix compile --all-warnings --warnings-as-errors
+mix format --check-formatted
+mix credo
+mix dialyzer
+mix test --all-warnings
+npm run prettier:check --prefix assets

@@ -1,0 +1,41 @@
+<header class="h-[3.25rem] bg-slate-600 text-white shadow-sm">
+  <div class="mx-auto flex max-w-screen-xl items-center h-full justify-between px-4 xl:px-0">
+    <.link
+      href={Routes.dashboard_path(MaydayWeb.Endpoint, :index)}
+      class="flex items-center h-full space-x-2 bg-red-500 px-4 py-2"
+    >
+      <div class="font-black tracking-tighter sm:block">Mayday</div>
+    </.link>
+
+    <div class="relative" x-data="{ userMenuOpen: false }">
+      <button
+        class="flex items-center"
+        x-on:click="userMenuOpen = !userMenuOpen"
+        x-on:click.outside="userMenuOpen = false"
+      >
+        <div class="mr-4 flex h-8 w-8 select-none items-center justify-around rounded-full border border-gray-400 bg-slate-300 uppercase text-gray-400">
+          <div><%= String.first(@current_user.first_name) %></div>
+        </div>
+
+        <div class="hidden sm:block">
+          <%= full_name(@current_user) %>
+        </div>
+
+        <div class="mt-1 ml-2 h-0 w-0 border-4 border-transparent border-t-white"></div>
+      </button>
+
+      <template x-if="userMenuOpen">
+        <ul class="min-w-[10rem] absolute right-0 mt-4 rounded-lg border border-gray-400 bg-white px-6 py-2 text-gray-900 underline shadow-lg">
+          <li class="py-2">
+            <.link navigate={Routes.user_settings_path(MaydayWeb.Endpoint, :edit)} class="text-red-500">Settings</.link>
+          </li>
+          <li class="py-2">
+            <.link href={Routes.user_session_path(MaydayWeb.Endpoint, :delete)} method="delete" class="text-red-500">
+              Log out
+            </.link>
+          </li>
+        </ul>
+      </template>
+    </div>
+  </div>
+</header>

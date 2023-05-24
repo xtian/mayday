@@ -1,0 +1,30 @@
+<.wrapper_small>
+  <h1 class="text-3xl font-bold"><%= @page_title %></h1>
+
+  <.form :let={f} for={@changeset} action={Routes.user_invitation_path(@conn, :update, @token)}>
+    <div class="flex flex-col space-y-4">
+      <div class="flex space-x-4">
+        <label class="grow">
+          <div class="mb-2">First Name</div>
+          <%= text_input(f, :first_name, required: true, class: "Input") %>
+        </label>
+
+        <label class="grow">
+          <div class="mb-2">Last Name</div>
+          <%= text_input(f, :last_name, required: true, class: "Input") %>
+        </label>
+      </div>
+
+      <%= error_tag(f, :first_name) %>
+      <%= error_tag(f, :last_name) %>
+
+      <label>
+        <div class="mb-2">Password</div>
+        <%= password_input(f, :password, required: true, class: "Input") %>
+      </label>
+      <%= error_tag(f, :password) %>
+
+      <button class="!mt-8 self-end px-6 py-2 bg-red-500 text-white rounded-lg">Accept Invite</button>
+    </div>
+  </.form>
+</.wrapper_small>

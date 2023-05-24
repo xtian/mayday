@@ -1,0 +1,8 @@
+<%= if @current_user do %>
+  <%= render("_header.html", current_user: @current_user) %>
+<% end %>
+
+<.alert type="info" message={get_flash(@conn, :info)} class="mx-auto my-4 max-w-7xl" />
+<.alert type="error" message={get_flash(@conn, :error)} class="mx-auto my-4 max-w-7xl" />
+
+<%= @inner_content %>
